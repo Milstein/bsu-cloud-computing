@@ -1,0 +1,11 @@
+user daemon
+pidfile /var/tmp/sniproxy.pid
+listener <%= node.default[:bcc][:local_ip_addr] %> 80 {
+    proto http
+}
+listener <%= node.default[:bcc][:local_ip_addr] %> 443 {
+    proto tls
+}
+table {
+    domain\.com *
+}
