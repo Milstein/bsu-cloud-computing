@@ -1,6 +1,6 @@
 name             'dns-proxy'
-maintainer       'YOUR_COMPANY_NAME'
-maintainer_email 'YOUR_EMAIL'
+maintainer       'zdv'
+maintainer_email 'zvickery@gmail.com'
 license          'All rights reserved'
 description      'Installs/Configures dns-proxy'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))

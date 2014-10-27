@@ -11,7 +11,7 @@ options {
 	// the all-0's placeholder.
 
 	forwarders {
-		<%= node.default[:bcc][:local_dns_server] %>;
+		<%= node.default["dns-proxy"][:real_dns_server] %>;
 	};
 
 	//========================================================================

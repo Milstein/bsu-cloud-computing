@@ -5,7 +5,7 @@ This file is used to list changes made in each version of the dns-proxy cookbook
 
 0.1.0
 -----
-- [your_name] - Initial release of dns-proxy
+- [Zach Vickery] - Initial release of dns-proxy
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

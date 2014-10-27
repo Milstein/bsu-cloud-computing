@@ -1,4 +1,5 @@
-default[:bcc][:sniproxy_dir]  = "/home/ubuntu/sniproxy"
-default[:bcc][:local_ip_addr] = node[:ec2][:local_ipv4]
-default[:bcc][:public_ip_addr] = node[:ec2][:public_ipv4]
-default[:bcc][:local_dns_server] = "fml"
+default["dns-proxy"][:sniproxy_dir]  = "/opt/sniproxy"
+default["dns-proxy"][:local_ip_addr] = "127.0.0.1"
+default["dns-proxy"][:public_ip_addr] = "127.0.0.1"
+default["dns-proxy"][:query_ip_addr] = "127.0.0.1"
+default["dns-proxy"][:real_dns_server] = "8.8.8.8"

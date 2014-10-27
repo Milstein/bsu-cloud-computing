@@ -8,10 +8,12 @@
 
 include "/etc/bind/rndc.key";
 
+// who can query this nameserver
 acl "trusted" {
-    172.31.38.17;
+    <%= node.default["dns-proxy"][:local_ip_addr] %>
+    <%= node.default["dns-proxy"][:public_ip_addr] %>
+    <%= node.default["dns-proxy"][:query_ip_addr] %>
     127.0.0.1;
-    67.60.165.109;
 };
 
 include "/etc/bind/zones.override";

@@ -13,8 +13,8 @@ $TTL  86400
 ; need atleast a nameserver
     IN  NS  ns1
 ; specify nameserver IP address
-ns1 IN  A   <%= node.default[:bcc][:public_ip_addr] %>
+ns1 IN  A   <%= node.default["dns-proxy"][:public_ip_addr] %>
 ; provide IP address for domain itself
-@   IN  A   <%= node.default[:bcc][:public_ip_addr] %>
+@   IN  A   <%= node.default["dns-proxy"][:public_ip_addr] %>
 ; resolve everything with the same IP address as ns1
-*   IN  A   <%= node.default[:bcc][:public_ip_addr] %>
+*   IN  A   <%= node.default["dns-proxy"][:public_ip_addr] %>
