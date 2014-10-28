@@ -1,0 +1,15 @@
+{
+  "name": "dns-proxy-ec2",
+  "description": "dns-proxy running on ec2",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "dns-proxy": {
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[dns-proxy]"
+  ]
+}

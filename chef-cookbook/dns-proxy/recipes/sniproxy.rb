@@ -1,3 +1,5 @@
+include_recipe 'dns-proxy::networking'
+
 directory ::File.dirname(node.default["dns-proxy"][:sniproxy_dir]) do
   action :create
 end
