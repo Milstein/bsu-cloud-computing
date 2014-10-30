@@ -1,0 +1,14 @@
+- hosts: all
+  name: create ec2 ami
+  connection: local
+  vars:
+    instance_id_file: /tmp/ansible-instance-id.tmp
+    instance_name: unknown
+    virt_type: unknown
+  tasks:
+  - local_action: command cat {{instance_id_file}}
+    register: cat
+  - local_action: ec2_ami instance_id={{cat.stdout}} wait=yes wait_timeout=3600
+                  name=ami-{{instance_name}}-{{ansible_date_time.year}}{{ansible_date_time.month}}{{ansible_date_time.day}}T{{ansible_date_time.hour}}{{ansible_date_time.minute}}{{ansible_date_time.second}}-{{virt_type}}
+  - local_action: ec2 state=absent instance_ids={{cat.stdout}}
+  - local_action: command rm {{instance_id_file}}

@@ -1,0 +1,30 @@
+---
+- hosts: ami-build
+  name: sniproxy
+  sudo: yes
+  vars:
+    local_ip: 127.0.0.1
+    sniproxy_dir: /opt/sniproxy
+  tasks:
+  - file: path=/opt state=directory
+  - copy: src=files/sniproxy.conf dest=/etc/init/sniproxy.conf
+  - git: repo=git://github.com/dlundquist/sniproxy.git
+         accept_hostkey=yes
+         dest={{sniproxy_dir}}
+    notify:
+      - build sniproxy
+
+  handlers:
+  - name: build sniproxy
+    action: command bash -c "./autogen.sh && ./configure && sudo make install" creates=/usr/local/sbin/sniproxy chdir={{sniproxy_dir}}
+    notify:
+      - port 80 nat
+      - port 443 nat
+      - start sniproxy
+
+  - name: port 80 nat
+    action: command iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j DNAT --to {{local_ip}}
+  - name: port 443 nat
+    action: command iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j DNAT --to {{local_ip}}
+  - name: start sniproxy
+    action: service name=sniproxy state=started

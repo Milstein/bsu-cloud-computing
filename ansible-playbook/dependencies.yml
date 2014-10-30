@@ -1,0 +1,13 @@
+---
+- hosts: ami-build
+  name: dependencies
+  sudo: yes
+  tasks:
+  - command: apt-get -y update
+  - apt: pkg=htop state=present
+  - apt: pkg=git state=present
+  - apt: pkg=dh-autoreconf state=present
+  - apt: pkg=libpcre3-dev state=present
+  - apt: pkg=libudns-dev state=present
+  - apt: pkg=libev-dev state=present
+  - apt: pkg=pkg-config state=present
